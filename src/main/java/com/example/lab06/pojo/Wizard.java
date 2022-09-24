@@ -16,10 +16,10 @@ public class Wizard {
 
     public Wizard() {
     }
-    public Wizard(String _id, String name, String sex, String school, String house, String money, String position) {
+    public Wizard(String _id, String sex, String name, String school, String house, String money, String position) {
         this._id = _id;
-        this.name = name;
         this.sex = sex;
+        this.name = name;
         this.school = school;
         this.house = house;
         this.money = money;
