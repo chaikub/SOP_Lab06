@@ -7,8 +7,8 @@ import org.springframework.data.mongodb.core.mapping.Document;
 public class Wizard {
     @Id
     private String _id;
-    private String name;
     private String sex;
+    private String name;
     private String school;
     private String house;
     private String money;

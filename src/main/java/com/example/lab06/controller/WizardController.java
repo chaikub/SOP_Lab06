@@ -14,10 +14,11 @@ import java.util.List;
 
 @RestController
 public class WizardController {
+
     @RequestMapping(value = "/wizards", method = RequestMethod.GET)
-    public ResponseEntity<?> getWizards() {
+    public List<Wizard> getWizards() {
         List<Wizard> wizards = WizardService.retrieveWizards();
-        return ResponseEntity.ok(wizards);
+        return wizards;
     }
     @RequestMapping(value ="/addWizard/{name}/{sex}/{money}/{school}/{house}/{position}", method = RequestMethod.POST)
     public ResponseEntity<?> createWizard(@PathVariable("name") String name,
@@ -41,5 +42,28 @@ public class WizardController {
         Wizard wizard = WizardService.retrieveWizardsByName(name);
         boolean status = WizardService.deleteWizard(wizard);
         return status;
+    }
+
+    @RequestMapping(value ="/updateWizard/{nameOld}/{nameNew}/{sex}/{money}/{school}/{house}/{position}", method = RequestMethod.POST)
+    public boolean updateWizard(@PathVariable("nameOld") String nameOld,
+                                @PathVariable("nameNew") String nameNew,
+                                @PathVariable("sex") String sex,
+                                @PathVariable("money") String money,
+                                @PathVariable("school") String school,
+                                @PathVariable("house") String house,
+                                @PathVariable("position") String position){
+        Wizard wizard = WizardService.retrieveWizardsByName(nameOld);
+        String s = "";
+        if(sex.equals("Male")){
+            s = "m";
+        }else {
+            s = "f";
+        }
+        if(wizard != null){
+            WizardService.updateWizard(new Wizard(wizard.get_id(), s, nameNew, school, house, money, position));
+            return true;
+        }else {
+            return false;
+        }
     }
 }
