@@ -10,5 +10,4 @@ public interface WizardRepository extends MongoRepository<Wizard, String> {
     @Query(value = "{name: '?0'}")
     public Wizard findByName(String name);
 
-//    public Wizard updateWizard(Wizard wizard);
 }

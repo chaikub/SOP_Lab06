@@ -16,9 +16,9 @@ import java.util.List;
 public class WizardController {
 
     @RequestMapping(value = "/wizards", method = RequestMethod.GET)
-    public List<Wizard> getWizards() {
+    public ResponseEntity<?> getWizards() {
         List<Wizard> wizards = WizardService.retrieveWizards();
-        return wizards;
+        return ResponseEntity.ok(wizards);
     }
     @RequestMapping(value ="/addWizard/{name}/{sex}/{money}/{school}/{house}/{position}", method = RequestMethod.POST)
     public ResponseEntity<?> createWizard(@PathVariable("name") String name,
