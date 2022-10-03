@@ -8,21 +8,20 @@ import java.util.List;
 @Service
 public class WizardService {
     @Autowired
-    private static WizardRepository repository;
+    private  WizardRepository repository;
     public WizardService(WizardRepository repository) {
         this.repository = repository;
     }
-    public static List<Wizard> retrieveWizards(){
+    public  List<Wizard> retrieveWizards(){
         return repository.findAll();
     }
-
-    public static Wizard retrieveWizardsByName(String name){
+    public  Wizard retrieveWizardsByName(String name){
         return repository.findByName(name);
     }
-    public static Wizard createWizard(Wizard wizard){
+    public  Wizard createWizard(Wizard wizard){
         return repository.save(wizard);
     }
-    public static boolean deleteWizard(Wizard wizard){
+    public  boolean deleteWizard(Wizard wizard){
         try {
             repository.delete(wizard);
             return true;
@@ -30,7 +29,7 @@ public class WizardService {
             return false;
         }
     }
-    public static Wizard updateWizard(Wizard wizard){
+    public Wizard updateWizard(Wizard wizard){
         return repository.save(wizard);
     }
 }
