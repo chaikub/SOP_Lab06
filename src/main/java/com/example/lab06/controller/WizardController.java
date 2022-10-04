@@ -65,7 +65,6 @@ public class WizardController {
         }
         Wizard wizard = service.updateWizard(new Wizard(wizardold.get_id(), s, nameNew, school, house, money, position));
         if(wizard != null){
-
             return true;
         }else {
             return false;

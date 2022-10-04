@@ -90,7 +90,7 @@ public class MainWizardView extends VerticalLayout {
             position.setValue(wizard.getPosition());
             dollar.setValue(Double.valueOf(wizard.getMoney()));
             school.setValue(wizard.getSchool());
-            house.setValue(wizard.getSchool());
+            house.setValue(wizard.getHouse());
         });
 
         previous.addClickListener(event -> {
@@ -117,7 +117,7 @@ public class MainWizardView extends VerticalLayout {
             position.setValue(wizard.getPosition());
             dollar.setValue(Double.valueOf(wizard.getMoney()));
             school.setValue(wizard.getSchool());
-            house.setValue(wizard.getSchool());
+            house.setValue(wizard.getHouse());
         });
 
         create.addClickListener(event -> {
@@ -127,8 +127,6 @@ public class MainWizardView extends VerticalLayout {
             String newDollars = dollar.getValue()+"";
             String newSchool = school.getValue()+"";
             String newHouse = house.getValue()+"";
-
-
             Wizard out = WebClient.create()
                     .post()
                     .uri("http://localhost:8080/addWizard/"+newName+"/"+newGender+"/"+newDollars+"/"+newSchool+"/"+newHouse+"/"+newPosition)
@@ -155,6 +153,8 @@ public class MainWizardView extends VerticalLayout {
                     .block();
             if(out){
                 nf = Notification.show("Wizard has been updated", 3000, BOTTOM_START);
+            }else{
+                nf = Notification.show("Wizard has not updated", 3000, BOTTOM_START);
             }
         });
 
